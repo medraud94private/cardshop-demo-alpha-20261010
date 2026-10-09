@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#131c25">
+  <title>Card Shop · Season One</title>
+  <link rel="icon" href="data:,">
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#131c25;color:#f3ead8;font-family:system-ui,sans-serif}
+    #stage{position:fixed;inset:0 0 32px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    canvas{display:block;background:#131c25;touch-action:none;max-width:100%;max-height:100%}
+    #loading{position:fixed;inset:0;display:grid;place-content:center;gap:18px;text-align:center;background:#131c25;padding:28px}
+    h1{font-size:clamp(24px,4vw,40px);margin:0;font-weight:650;letter-spacing:.03em}
+    progress{width:min(76vw,420px);height:12px;accent-color:#d6b46d}#hint{max-width:560px;line-height:1.7;font-size:15px}
+    #warning{position:fixed;inset:16px 16px auto;z-index:20;pointer-events:none}#warning p{background:#812f3c;padding:12px;border-radius:8px;overflow-wrap:anywhere}
+    #save-state{position:fixed;bottom:0;left:0;width:100%;min-height:32px;padding:5px 16px;font-size:13px;text-align:right;color:#d6b46d;background:#131c25}
+    #retry{display:none;background:#d6b46d;color:#131c25;border:0;border-radius:8px;padding:12px;font:inherit;cursor:pointer}
+  </style>
+</head>
+<body>
+  <main id="stage"><canvas id="unity-canvas" width="960" height="600" tabindex="0"></canvas></main>
+  <section id="loading" aria-live="polite"><h1 id="title">Card Shop · Season One</h1><progress id="progress" max="1" value="0"></progress><div id="hint"></div><button id="retry"></button></section>
+  <div id="warning" role="alert"></div>
+  <footer id="save-state" aria-live="polite"></footer>
+  <script>
+    const jp = new URLSearchParams(location.search).get("lang") === "ja";
+    document.documentElement.lang = jp ? "ja" : "ko";
+    const words = jp ? {
+      loading:"ゲームを読み込んでいます…", starting:"ゲームを起動しています…",
+      failed:"読み込みに失敗しました。", retry:"再読み込み", data:"ゲームデータを読み込んでいます…"
+    } : {loading:"게임을 불러오는 중…",starting:"게임을 시작하는 중…",failed:"불러오지 못했어요.",retry:"다시 불러오기",data:"게임 데이터를 불러오는 중…"};
+    const canvas = document.getElementById("unity-canvas"), stage = document.getElementById("stage");
+    const loading = document.getElementById("loading"), progress = document.getElementById("progress"), hint = document.getElementById("hint"), retry = document.getElementById("retry");
+    hint.textContent = words.loading; retry.textContent = words.retry; retry.onclick = () => location.reload();
+    function layout(){stage.style.bottom=Math.max(32,document.getElementById("save-state").offsetHeight)+"px";const w=stage.clientWidth,h=stage.clientHeight,r=960/600;const cw=Math.min(w,h*r);canvas.style.width=Math.floor(cw)+"px";canvas.style.height=Math.floor(cw/r)+"px";}
+    layout(); addEventListener("resize",layout);
+    if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
+    function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
+    const buildUrl="Build",config={
+      arguments:[],dataUrl:buildUrl+"/9ef67a119b59c102bc053b9b8a5ed043.data.unityweb",frameworkUrl:buildUrl+"/5da9f0b317495171851e330ccbccbc01.framework.js.unityweb",
+      codeUrl:buildUrl+"/9ba366d0a3a2af33c13dd366e2eb8ca7.wasm.unityweb",
+      streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
+      productName:"Card Shop · Season One",productVersion:"0.0.0-dev",
+      showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
+    };
+    // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
+    async function splitData(){
+      const response=await fetch(config.dataUrl+".parts.json");
+      if(response.status===404)return null;
+      if(!response.ok)throw new Error("Data manifest HTTP "+response.status);
+      const manifest=await response.json();
+      if(!Array.isArray(manifest.parts)||!manifest.parts.length)throw new Error("Invalid data manifest");
+      hint.textContent=words.data;const buffers=[];let received=0;
+      for(const part of manifest.parts){
+        if(!/^[a-zA-Z0-9._-]+$/.test(part.file))throw new Error("Invalid data part path");
+        const r=await fetch(buildUrl+"/"+part.file);if(!r.ok)throw new Error("Data part HTTP "+r.status);
+        const bytes=await r.arrayBuffer();if(bytes.byteLength!==part.bytes)throw new Error("Incomplete data part");
+        if(part.sha256&&crypto.subtle){const digest=await crypto.subtle.digest("SHA-256",bytes);const hash=Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,"0")).join("");if(hash!==part.sha256)throw new Error("Data part checksum mismatch");}
+        buffers.push(bytes);received+=bytes.byteLength;progress.value=received/manifest.totalBytes*.45;
+      }
+      if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
+      return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
+    }
+    const script=document.createElement("script");script.src=buildUrl+"/7198d28857c777b723acc8e1c7f46810.loader.js";
+    function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
+    script.onerror=()=>failed("Unity loader HTTP error");
+    script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;
+      window.unityInstance=await createUnityInstance(canvas,config,p=>{progress.value=blob ? .45+p*.55 : p;if(p>=1)hint.textContent=words.starting;});
+      loading.style.display="none";layout();canvas.focus();
+    }catch(error){failed(error);}finally{if(blob)URL.revokeObjectURL(blob);}};
+    document.body.append(script);
+  </script>
+</body>
+</html>
