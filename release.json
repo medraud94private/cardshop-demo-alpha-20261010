@@ -1,0 +1,12 @@
+{
+  "releaseId": "ko-v041-preview-001",
+  "languageStage": "ko",
+  "stageStatus": "preview",
+  "createdUtc": "2026-10-09T21:04:46.717976+00:00",
+  "previousReleaseId": null,
+  "completionVerifiedByHelper": false,
+  "receiptSha256": "54929939a27d64888a61c6de97dd715af1ccf1e24141928dbb5532e832bea666",
+  "publicBytes": 300668012,
+  "baseCommit": "0d36c5b02b49676abca5d4d5ea4781b3935f7960",
+  "acceptanceReportSha256": null
+}

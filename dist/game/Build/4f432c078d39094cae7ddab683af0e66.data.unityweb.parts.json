@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "totalBytes": 294729523,
+  "sha256": "6e62441ba9c838e7b0e4d372134cba8acd5f274dd1f35a8d70994a2e331f377e",
+  "parts": [
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part0",
+      "bytes": 25165824,
+      "sha256": "1d8602e8bd87add5b18a2ba1d5fbcd066de1e0d4d5a50be9049f5cd2ce764288"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part1",
+      "bytes": 25165824,
+      "sha256": "65a89d6edd721b65ba999004b1080ea28d2f8e4beebcff1106579242ef256f74"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part2",
+      "bytes": 25165824,
+      "sha256": "e03d7c8bcdcf340de677e32077083bca985220a819386ed1f1b40dd1249ac2c2"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part3",
+      "bytes": 25165824,
+      "sha256": "2fdd1ba7b60ca3927167d8b928ad6737b80e778a6efaf926b50d795a35ef7797"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part4",
+      "bytes": 25165824,
+      "sha256": "b4f8c099d1955b2fe1f3c09cc1846caea710620bb58d8713b5c48b5fb4cde41e"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part5",
+      "bytes": 25165824,
+      "sha256": "764dcd29fe26faa1178877378a781b961e0c631ebea031587f7a7cde1b96dfc8"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part6",
+      "bytes": 25165824,
+      "sha256": "5026cf9039e13adf987d58b1ba0135f2c7fc32f9b77c3a5e7c8ac1097b2b59ee"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part7",
+      "bytes": 25165824,
+      "sha256": "942b0e0dd8c0743d1569789b06c033e31e38d56cd04939b7123e4090bc69f89e"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part8",
+      "bytes": 25165824,
+      "sha256": "28b9058e11d1e9040d6b12e91fc824d190d0d79e5e3254f540d085d5c2bb33c5"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part9",
+      "bytes": 25165824,
+      "sha256": "767521b5571c331055a1446900c069d7062d2d814cf898a55b9c5fa472b2a1f1"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part10",
+      "bytes": 25165824,
+      "sha256": "d451b5337df2154d57efc5278091693e9d5872355bcecabda71be5cad9f980c4"
+    },
+    {
+      "file": "4f432c078d39094cae7ddab683af0e66.data.unityweb.part11",
+      "bytes": 17905459,
+      "sha256": "7f1d0e8ccf264425c722979f826a672d3e50470ab1e0136dfbd3f04cde622722"
+    }
+  ]
+}
