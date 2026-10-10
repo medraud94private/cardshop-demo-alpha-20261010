@@ -38,10 +38,10 @@
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:new URLSearchParams(location.search).get("mode")==="shop" ? ["--track","sim"] : [],dataUrl:buildUrl+"/6c929c8affc177cf0d5cb463370ac344.data.unityweb",frameworkUrl:buildUrl+"/5335563f83a13027b2ad305a3ec2121f.framework.js.unityweb",
-      codeUrl:buildUrl+"/e429e27d41a6a3241e6e17b886984dec.wasm.unityweb",
+      arguments:[],dataUrl:buildUrl+"/c95ffa144d69f2db78c02e8c21f6c570.data.unityweb",frameworkUrl:buildUrl+"/455028b7753347521b24404c04e7b198.framework.js.unityweb",
+      codeUrl:buildUrl+"/39950c5a5779d11c6c334e11a6c52f76.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop · Season One",productVersion:"0.4.8-ko-shop-preview-001",
+      productName:"Card Shop · Season One",productVersion:"0.4.9-ko-shop-v2-preview-004",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -62,7 +62,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/4a1f29827c92812a90c9fe4f7374c254.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/de20a8187df7a3f48d805ebc36b6a88d.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;

@@ -1,12 +1,12 @@
 {
-  "releaseId": "ko-v048-shop-preview-001",
+  "releaseId": "ko-v049-shop-v2-preview-004",
   "languageStage": "ko",
   "stageStatus": "preview",
-  "createdUtc": "2026-10-10T10:08:30.975360+00:00",
-  "previousReleaseId": "ko-v047-improvements-preview-001",
+  "createdUtc": "2026-10-10T18:04:25.549895+00:00",
+  "previousReleaseId": "ko-v048-shop-preview-001",
   "completionVerifiedByHelper": false,
-  "receiptSha256": "4ece73cbedab49fdab83f7887ac16ff67cb3200df3fdbdfd74db19c56608944e",
-  "publicBytes": 305278205,
-  "baseCommit": "ff701c3f0a020abf32150173a9a629af2aa1427d",
+  "receiptSha256": "f7e47043c51a29f03fd1e5e8eee073a8ca7617091a979438083ef754f1b5c872",
+  "publicBytes": 305496498,
+  "baseCommit": "2cf4fcd53012090a97db364dce3ba05ac49ab0d6",
   "acceptanceReportSha256": null
 }
