@@ -1,12 +1,12 @@
 {
-  "releaseId": "ko-v042-accepted-001",
+  "releaseId": "ko-v047-improvements-preview-001",
   "languageStage": "ko",
-  "stageStatus": "accepted",
-  "createdUtc": "2026-10-09T23:46:06.637376+00:00",
-  "previousReleaseId": "ko-v042-preview-001",
+  "stageStatus": "preview",
+  "createdUtc": "2026-10-10T09:23:48.130248+00:00",
+  "previousReleaseId": "ko-v042-accepted-001",
   "completionVerifiedByHelper": false,
-  "receiptSha256": "04a5cd166d33b56067d69877353fd425666c1f1c0c4d8b3e93e867c60298a898",
-  "publicBytes": 300669639,
-  "baseCommit": "8736440a6a807e7d2bf6b8cdab05a28bf2bdc2d4",
-  "acceptanceReportSha256": "d238b9674854e29effb35bd0d087e5457175225029a85e017ae31bff18e7887e"
+  "receiptSha256": "03c5848bd53c099db61a2df196a68829ab6e3cfe81c44e0aa90391b789221cb7",
+  "publicBytes": 305267009,
+  "baseCommit": "ed441d6a8d41eaae3ab35a9abd34b0ce5b451927",
+  "acceptanceReportSha256": null
 }

@@ -38,10 +38,10 @@
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:[],dataUrl:buildUrl+"/71382d2cc042671d7474882f95ec9f96.data.unityweb",frameworkUrl:buildUrl+"/5da9f0b317495171851e330ccbccbc01.framework.js.unityweb",
-      codeUrl:buildUrl+"/af48be27be60429048a3621c789ee484.wasm.unityweb",
+      arguments:[],dataUrl:buildUrl+"/698824a581c63f0005ec25bf9d82aaa3.data.unityweb",frameworkUrl:buildUrl+"/2926642838569eb1ebbc47de454ad73e.framework.js.unityweb",
+      codeUrl:buildUrl+"/0d4548dae31f6e135503790552b59295.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop · Season One",productVersion:"0.4.2",
+      productName:"Card Shop · Season One",productVersion:"0.4.7-ko-improvements-preview-001",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -62,7 +62,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/2f1e3fae920546b80b840fe693f9eed3.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/50ef31a57f8fc18e685d3d9dead877a5.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;
