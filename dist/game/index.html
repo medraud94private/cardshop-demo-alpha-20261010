@@ -38,10 +38,10 @@
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:[],dataUrl:buildUrl+"/698824a581c63f0005ec25bf9d82aaa3.data.unityweb",frameworkUrl:buildUrl+"/2926642838569eb1ebbc47de454ad73e.framework.js.unityweb",
-      codeUrl:buildUrl+"/0d4548dae31f6e135503790552b59295.wasm.unityweb",
+      arguments:new URLSearchParams(location.search).get("mode")==="shop" ? ["--track","sim"] : [],dataUrl:buildUrl+"/6c929c8affc177cf0d5cb463370ac344.data.unityweb",frameworkUrl:buildUrl+"/5335563f83a13027b2ad305a3ec2121f.framework.js.unityweb",
+      codeUrl:buildUrl+"/e429e27d41a6a3241e6e17b886984dec.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop · Season One",productVersion:"0.4.7-ko-improvements-preview-001",
+      productName:"Card Shop · Season One",productVersion:"0.4.8-ko-shop-preview-001",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -62,7 +62,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/50ef31a57f8fc18e685d3d9dead877a5.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/4a1f29827c92812a90c9fe4f7374c254.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;
