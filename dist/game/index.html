@@ -31,6 +31,11 @@
       failed:"読み込みに失敗しました。", retry:"再読み込み", data:"ゲームデータを読み込んでいます…"
     } : {loading:"게임을 불러오는 중…",starting:"게임을 시작하는 중…",failed:"불러오지 못했어요.",retry:"다시 불러오기",data:"게임 데이터를 불러오는 중…"};
     const canvas = document.getElementById("unity-canvas"), stage = document.getElementById("stage");
+    // Keep approved game arrows/Tab on the focused canvas without consuming Unity input.
+    canvas.addEventListener("keydown", event => {
+      if(document.activeElement !== canvas || event.isComposing)return;
+      if(["Tab","ArrowLeft","ArrowRight","ArrowUp","ArrowDown"].includes(event.key))event.preventDefault();
+    }, {capture:true});
     const loading = document.getElementById("loading"), progress = document.getElementById("progress"), hint = document.getElementById("hint"), retry = document.getElementById("retry");
     hint.textContent = words.loading; retry.textContent = words.retry; retry.onclick = () => location.reload();
     function layout(){stage.style.bottom=Math.max(32,document.getElementById("save-state").offsetHeight)+"px";const w=stage.clientWidth,h=stage.clientHeight,r=960/600;const cw=Math.min(w,h*r);canvas.style.width=Math.floor(cw)+"px";canvas.style.height=Math.floor(cw/r)+"px";}
@@ -38,10 +43,10 @@
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:[],dataUrl:buildUrl+"/74e8455dc69585a43d4c242622210d73.data.unityweb",frameworkUrl:buildUrl+"/5c4855c792486e2dca32f9d5b8b3fe02.framework.js.unityweb",
-      codeUrl:buildUrl+"/339639e26487520933ed17a65bb1e664.wasm.unityweb",
+      arguments:[],dataUrl:buildUrl+"/f04b899e786190b2e8dd84ae7831c330.data.unityweb",frameworkUrl:buildUrl+"/3e47f3f1b73c019e317a24365c5c8202.framework.js.unityweb",
+      codeUrl:buildUrl+"/a90b41c1a5eda57cb42696c97ef25ae9.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop · Season One",productVersion:"0.4.9-shop-test-web-003",
+      productName:"Card Shop · Season One",productVersion:"0.4.46-integrated-test-web-20261021-002",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -62,7 +67,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/819511cf61cc726eeba6b643a8e4225a.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/6e00a2422726f974cc83a92bbefa5cd1.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;
