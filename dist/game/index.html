@@ -43,10 +43,10 @@
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:[],dataUrl:buildUrl+"/154f82b53961afdc1da8144533837556.data.unityweb",frameworkUrl:buildUrl+"/dac3fbf448c3e68e9c9b6916ced1b349.framework.js.unityweb",
-      codeUrl:buildUrl+"/565628ea0fd3d3ef2219891259982b9b.wasm.unityweb",
+      arguments:[],dataUrl:buildUrl+"/eaec21553d21061297a9c203b8783ee3.data.unityweb",frameworkUrl:buildUrl+"/5a417ffdc8308493790b36c2ac82bd8c.framework.js.unityweb",
+      codeUrl:buildUrl+"/caa7a176fa1714b4b2384c67465cb797.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop · Season One",productVersion:"0.4.48-battle-integrated-web-20261024-004",
+      productName:"Card Shop · Season One",productVersion:"0.4.48-battle-integrated-web-20261024-007",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -67,7 +67,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/3dff20727c86e46178cee0b31dab49e7.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/b9a775a4268ec08cdaa3ec6bf54e1cd4.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;

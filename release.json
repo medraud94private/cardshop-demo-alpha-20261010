@@ -1,13 +1,13 @@
 {
-  "releaseId": "v0.4.48-battle-integrated-web-20261024-004",
+  "releaseId": "v0.4.48-battle-web-20261024-008",
   "languageStage": "ko",
   "stageStatus": "preview",
-  "createdUtc": "2026-10-24T13:48:19.016099+00:00",
-  "previousReleaseId": "v0.4.46-integrated-test-web-20261021-002",
+  "createdUtc": "2026-10-24T14:41:56.529779+00:00",
+  "previousReleaseId": "v0.4.48-battle-integrated-web-20261024-004",
   "completionVerifiedByHelper": false,
-  "publicFileCount": 31,
-  "receiptSha256": "965a7ca414bd65e5ea135f5b753705a046673fdfe7952eaffea453824f879648",
-  "publicBytes": 618590437,
-  "baseCommit": "8fdd0568d8c26ffbb8049dcba78ddc9e20d96a07",
+  "publicFileCount": 50,
+  "receiptSha256": "6646e2545857c62fdede9233d0045763d95a99e29a7c1d4b4172aba434feb638",
+  "publicBytes": 946893862,
+  "baseCommit": "012837898d02b381d2f430011b80c5dae732dab6",
   "acceptanceReportSha256": null
 }
