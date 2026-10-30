@@ -19,7 +19,7 @@
   </style>
 </head>
 <body>
-  <main id="stage"><canvas id="unity-canvas" width="960" height="600" tabindex="0"></canvas></main>
+  <main id="stage"><canvas id="unity-canvas" width="1280" height="720" tabindex="0"></canvas></main>
   <section id="loading" aria-live="polite"><h1 id="title">Card Shop · Season One</h1><progress id="progress" max="1" value="0"></progress><div id="hint"></div><button id="retry"></button></section>
   <div id="warning" role="alert"></div>
   <footer id="save-state" aria-live="polite"></footer>
@@ -38,15 +38,15 @@
     }, {capture:true});
     const loading = document.getElementById("loading"), progress = document.getElementById("progress"), hint = document.getElementById("hint"), retry = document.getElementById("retry");
     hint.textContent = words.loading; retry.textContent = words.retry; retry.onclick = () => location.reload();
-    function layout(){stage.style.bottom=Math.max(32,document.getElementById("save-state").offsetHeight)+"px";const w=stage.clientWidth,h=stage.clientHeight,r=960/600;const cw=Math.min(w,h*r);canvas.style.width=Math.floor(cw)+"px";canvas.style.height=Math.floor(cw/r)+"px";}
+    function layout(){stage.style.bottom=Math.max(32,document.getElementById("save-state").offsetHeight)+"px";const w=stage.clientWidth,h=stage.clientHeight,r=1280/720;const cw=Math.min(w,h*r);canvas.style.width=Math.floor(cw)+"px";canvas.style.height=Math.floor(cw/r)+"px";}
     layout(); addEventListener("resize",layout);
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:[],dataUrl:buildUrl+"/eaec21553d21061297a9c203b8783ee3.data.unityweb",frameworkUrl:buildUrl+"/5a417ffdc8308493790b36c2ac82bd8c.framework.js.unityweb",
-      codeUrl:buildUrl+"/caa7a176fa1714b4b2384c67465cb797.wasm.unityweb",
+      arguments:[],dataUrl:buildUrl+"/4f6c2a1888d59abbdab4bf8d433651ee.data.unityweb",frameworkUrl:buildUrl+"/4b55c22ad2cb38e9e1cc3fe77e3cd48b.framework.js.unityweb",
+      codeUrl:buildUrl+"/c45ea765c6c8abd6cd819a4024f72807.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop · Season One",productVersion:"0.4.48-battle-integrated-web-20261024-007",
+      productName:"Card Shop · Season One",productVersion:"0.4.49-battle-integrated-web-20261031-008",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -67,7 +67,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/b9a775a4268ec08cdaa3ec6bf54e1cd4.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/22f45f7393d4eeba3a4b4ae75d225a0a.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;

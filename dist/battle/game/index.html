@@ -19,7 +19,7 @@
   </style>
 </head>
 <body>
-  <main id="stage"><canvas id="unity-canvas" width="960" height="600" tabindex="0"></canvas></main>
+  <main id="stage"><canvas id="unity-canvas" width="1280" height="720" tabindex="0"></canvas></main>
   <section id="loading" aria-live="polite"><h1 id="title">Card Shop Battle</h1><progress id="progress" max="1" value="0"></progress><div id="hint"></div><button id="retry"></button></section>
   <div id="warning" role="alert"></div>
   <footer id="save-state" aria-live="polite"></footer>
@@ -38,15 +38,15 @@
     }, {capture:true});
     const loading = document.getElementById("loading"), progress = document.getElementById("progress"), hint = document.getElementById("hint"), retry = document.getElementById("retry");
     hint.textContent = words.loading; retry.textContent = words.retry; retry.onclick = () => location.reload();
-    function layout(){stage.style.bottom=Math.max(32,document.getElementById("save-state").offsetHeight)+"px";const w=stage.clientWidth,h=stage.clientHeight,r=960/600;const cw=Math.min(w,h*r);canvas.style.width=Math.floor(cw)+"px";canvas.style.height=Math.floor(cw/r)+"px";}
+    function layout(){stage.style.bottom=Math.max(32,document.getElementById("save-state").offsetHeight)+"px";const w=stage.clientWidth,h=stage.clientHeight,r=1280/720;const cw=Math.min(w,h*r);canvas.style.width=Math.floor(cw)+"px";canvas.style.height=Math.floor(cw/r)+"px";}
     layout(); addEventListener("resize",layout);
     if(window.ResizeObserver)new ResizeObserver(layout).observe(document.getElementById("save-state"));
     function banner(message,type){if(type!=="error"){console.warn(message);return;}const p=document.createElement("p");p.textContent=String(message);document.getElementById("warning").append(p);}
     const buildUrl="Build",config={
-      arguments:[],dataUrl:buildUrl+"/2c6e9b66d4a02ff8af5405657bc25484.data.unityweb",frameworkUrl:buildUrl+"/b8580bf3991db2007e3a759016a02353.framework.js.unityweb",
-      codeUrl:buildUrl+"/fc4410724199310c0b95cefbd07c108d.wasm.unityweb",
+      arguments:[],dataUrl:buildUrl+"/499b11c167afbb1a9581c6b2ff3b678e.data.unityweb",frameworkUrl:buildUrl+"/2275a7a17cbafda0fd170d1880f2db68.framework.js.unityweb",
+      codeUrl:buildUrl+"/122a291b8610b06b443a26d4b9c31cca.wasm.unityweb",
       streamingAssetsUrl:"StreamingAssets",companyName:"CardShopLab",
-      productName:"Card Shop Battle",productVersion:"0.4.48-battle-standalone-web-20261024-006",
+      productName:"Card Shop Battle",productVersion:"0.4.49-battle-standalone-web-20261031-007",
       showBanner:banner,devicePixelRatio:1,autoSyncPersistentDataPath:true
     };
     // Parts are byte ranges of the original compressed Unity file. They are never recompressed.
@@ -67,7 +67,7 @@
       if(received!==manifest.totalBytes)throw new Error("Incomplete game data");
       return URL.createObjectURL(new Blob(buffers,{type:"application/octet-stream"}));
     }
-    const script=document.createElement("script");script.src=buildUrl+"/99346f3e8633e20953f8b7aed356a220.loader.js";
+    const script=document.createElement("script");script.src=buildUrl+"/306bd3d2050f7300bb87bef0c6a0de02.loader.js";
     function failed(error){hint.textContent=words.failed+" "+String(error);retry.style.display="block";console.error(error);}
     script.onerror=()=>failed("Unity loader HTTP error");
     script.onload=async()=>{let blob=null;try{blob=await splitData();if(blob)config.dataUrl=blob;
